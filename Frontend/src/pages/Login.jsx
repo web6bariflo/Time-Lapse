@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
 import { Button } from "../components/ui/button";
@@ -11,7 +11,7 @@ export default function Login() {
     password: ""
   });
   let navigate = useNavigate();
-  const { storeTokenInLS } = useAuth();
+  const {isLoggedIn, storeTokenInLS } = useAuth();
 
   const handleInput = (e) => {
     const name = e.target.name;
@@ -42,6 +42,13 @@ export default function Login() {
       toast.error(`${error.response?.data.extraDetails || error.message}`);
     }
   };
+
+   useEffect(() => {
+    if (isLoggedIn) {
+      navigate("/", { replace: true });
+    }
+  }, [isLoggedIn, navigate]);
+
 
   return (
     <div className="flex items-center justify-center min-h-[80vh] bg-gradient-to-br from-primary/10 to-accent/10 px-4">

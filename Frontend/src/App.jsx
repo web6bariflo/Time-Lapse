@@ -15,7 +15,7 @@ function Placeholder({ title }) {
   );
 }
 
-const App = () => {
+export default function App() {
   return (
     <Router>
       <Navbar />
@@ -24,7 +24,7 @@ const App = () => {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/login" element={<Login />} />
-            <Route path="/logout" element={<Logout/>}/>
+            <Route path="/logout" element={<Logout />} />
             <Route path="/monthly" element={<Placeholder title="Monthly View" />} />
             <Route path="/weekly" element={<Placeholder title="Weekly View" />} />
           </Routes>
@@ -32,6 +32,4 @@ const App = () => {
       </main>
     </Router>
   );
-};
-
-export default App; 
+}
